@@ -1,0 +1,37 @@
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+// Your code here along with comments explaining your approach:int based Recurrsion (DFS)
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int countOfMoves;
+    public int distributeCoins(TreeNode root) {
+        helper(root);
+        return countOfMoves;
+    }
+    public int helper(TreeNode root){
+        if(root == null)return 0;
+         int moves = root.val-1;//extra coins at root
+      moves += helper(root.left);
+      moves += helper(root.right);
+        countOfMoves += Math.abs(moves);//extra coins at left ,right and at particular root
+        return moves;
+      
+    }
+}
