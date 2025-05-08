@@ -1,0 +1,62 @@
+// Time Complexity :2^n
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :time limit exceeded
+// Your code here along with comments explaining your approach:BFS approach
+class Solution {
+    public int brokenCalc(int startValue, int target) {
+        Queue<Integer> qu = new LinkedList<>();
+        HashSet<Integer> set = new HashSet<>();
+        qu.add(startValue);
+        int count = 0;
+        while (!qu.isEmpty()) {
+            int size = qu.size();
+            for (int i = 0; i < size; i++) {
+                int polled = qu.poll();
+                if (polled == target)  return count;
+                
+                if (polled < target) { 
+                    int multi = polled * 2;
+                    if (!set.contains(multi)) {//checking weather its visited or not
+                        qu.add(multi);
+                    }
+                }
+                if (target > 0) {
+                    int sub = polled - 1;
+                    if (!set.contains(sub)) {//checking weather its visited or not
+                        qu.add(sub);
+                    }
+
+                }
+
+            }
+            count++;
+        }
+        return 0;
+    }
+}
+
+
+
+
+// Time Complexity :2^n
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :time limit exceeded
+// Your code here along with comments explaining your approach:instead of source to target i reversed the approachfro target to source by cehcking if it is divisble by 2 then do division for target by 2 if not then add 1 to it 
+class Solution {
+    public int brokenCalc(int startValue, int target) {
+        int count=0;
+        while(target > startValue){
+            if(target %2 == 0){
+                target=target/2;
+            }else{
+                target=target+1;
+            }
+            count++;
+        }
+    return count+startValue-target;
+    }
+}
+
+
